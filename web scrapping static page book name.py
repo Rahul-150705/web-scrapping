@@ -9,7 +9,8 @@ status=response.status_code
 print(status)
 d=1;
 data=[]
-while(status==200):
+books=[]
+while(status==200 and d<3):
     url = f"https://books.toscrape.com/catalogue/page-{d}.html"
     response=requests.get(url)
     state=response.status_code
@@ -25,15 +26,10 @@ while(status==200):
     for name,price,stock in zip(book_name,book_price,book_stock):
         pric=price.text.replace("£","").replace("Â","")
         data.append([name.get("title"),pric,stock.text.strip(),state])
-    #for i in range(len(data)):
-        # pric=data[i][1].split(".")[0]   #"51.77".split(".")-->['55','77']
-        #pric=float(data[i][1])
-        #if(int(pric)>50):
-            #books.append(data[i])
     d+=1;
 df = pd.DataFrame(data,columns=["Name","Price","Stock","Status Code"])
-df.to_csv("pagination.csv", index=False)
-print("Added to CSV")
+df.to_csv("xyzz.csv", index=False)
+print("Added to CSV with total data",d)
 
 
     
