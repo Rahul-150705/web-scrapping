@@ -38,7 +38,7 @@ for product in products:
     except:
         price = None
 
-    if name:
+    if name!=[]:
         data.append({
             "product_name": name,
             "price": price,
