@@ -9,21 +9,12 @@ status=response.status_code
 print(status)
 d=1;
 data=[]
-<<<<<<< HEAD
-books=[]
-while(status==200 and d<3):
-    url = f"https://books.toscrape.com/catalogue/page-{d}.html"
-    response=requests.get(url)
-    state=response.status_code
-    if(state!=200):
-=======
 while(status==200):
     url = f"https://books.toscrape.com/catalogue/page-{d}.html"
     response=requests.get(url)
 
     if(response.status_code!=200):
         print("status code",response.status_code)
->>>>>>> 72f0138 (added selenium scrapping for myntra)
         break;
     soup=BeautifulSoup(response.text,"html.parser")
 
@@ -34,13 +25,6 @@ while(status==200):
     book_stock=soup.select("p.instock.availability")
     for name,price,stock in zip(book_name,book_price,book_stock):
         pric=price.text.replace("£","").replace("Â","")
-<<<<<<< HEAD
-        data.append([name.get("title"),pric,stock.text.strip(),state])
-    d+=1;
-df = pd.DataFrame(data,columns=["Name","Price","Stock","Status Code"])
-df.to_csv("xyzz.csv", index=False)
-print("Added to CSV with total data",d)
-=======
         data.append([name.get("title"),pric,stock.text.strip()])
     #for i in range(len(data)):
         # pric=data[i][1].split(".")[0]   #"51.77".split(".")-->['55','77']
@@ -51,7 +35,6 @@ print("Added to CSV with total data",d)
 df = pd.DataFrame(data,columns=["Name","Price","Stcok"])
 df.to_csv("pagination.csv", index=False)
 print("Added to CSV")
->>>>>>> 72f0138 (added selenium scrapping for myntra)
 
 
     
