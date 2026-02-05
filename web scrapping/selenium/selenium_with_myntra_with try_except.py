@@ -24,29 +24,21 @@ try:
     print("Products loaded")
 except TimeoutException:
     print("Timed out")
-
+def scrape(parent,by,location):
+    try:
+        return parent.find_element(by,location).text
+    except NoSuchElementException:
+        return ""
 products = driver.find_elements(By.CSS_SELECTOR, "li.product-base")
 shirt=[]
 
 
 for p in products:
-    try:
-        brand = p.find_element(By.CSS_SELECTOR, "h3.product-brand").text
-    except NoSuchElementException:
-        brand=""
-    try:
-        product_type = p.find_element(By.CSS_SELECTOR, "h4.product-product").text
-    except NoSuchElementException:
-        product_type=""
-    try:
-        product_price=p.find_element(By.CSS_SELECTOR,"span.product-discountedPrice").text
-    except NoSuchElementException:
-        product_price=""
-    try:
-        product_actual_price=p.find_element(By.CSS_SELECTOR,"span.product-strike").text
-    except NoSuchElementException:
-        product_actual_price=""
-    shirt.append([brand,product_type,product_price,product_actual_price])
+        brand=scrape(p,By.CSS_SELECTOR, "h3.product-brand")
+        product_type = scrape(p,By.CSS_SELECTOR, "h4.product-product")
+        product_price=scrape(p,By.CSS_SELECTOR,"span.product-discountedPrice")
+        product_actual_price=scrape(p,By.CSS_SELECTOR,"span.product-strike")
+        shirt.append([brand,product_type,product_price,product_actual_price])
 if(len(shirt)==0):
     print("Shirt Not Found")
 

@@ -1,51 +1,101 @@
-brand
-KINGDOM OF WHITE
-AD By Arvind
-Kaku Fancy dresses
-Pepe Jeans
-TATTVA
-HERE&NOW
-DANFORTH
-Powerlook
-BAESD
-CORSICA
-AD By Arvind
-Allen Solly Junior
-Roadster
-Arrow
-Mast & Harbour
-Jackbella
-Urbano Fashion
-Pepe Jeans
-United Colors of Benetton
-Banana Club
-Campus Sutra
-Roadster
-Nautica
-Marks & Spencer
-United Colors of Benetton
-Roadster
-The Indian Garage Co
-HERE&NOW
-VASTRADO
-Pantaloons Junior
-DIVISIVE
-Nautica
-U.S. Polo Assn. Kids
-Allen Solly Junior
-H&M
-VANI COUTURE
-max
-Nautica
-Roadster
-VANI COUTURE
-Powerlook
-BAESD
-AAHWAN
-VASTRADO
-CORSICA
-Espanshe
-Raymond
-Roadster
-CRESALE
-ColorPlus
+brand,product_type,product_price,product_actual_price
+KINGDOM OF WHITE,Spread Collar Formal Shirt,Rs. 1347,Rs. 1499
+AD By Arvind,Slim Fit Opaque Casual Shirt,Rs. 1379,Rs. 2299
+H&M,Cotton Shirt,,
+H&M,Cotton Shirt,,
+TATTVA,Men Solid Casual Shirt,Rs. 799,Rs. 1999
+Manspire,Casual Shirt,Rs. 371,Rs. 1599
+Manspire,Formal Shirt,Rs. 372,Rs. 1599
+Powerlook,Textured Long Sleeves Shirt,Rs. 989,Rs. 2199
+AAHWAN,Casual Shirt,Rs. 594,Rs. 1999
+SZN,Textured Casual Shirt,Rs. 393,Rs. 1499
+AD By Arvind,Slim Fit Opaque Casual Shirt,Rs. 1019,Rs. 1699
+max,Casual Shirt,,
+DANFORTH,Boys Casual Shirt With T-shirt,Rs. 315,Rs. 1153
+Arrow,Pure Cotton Formal Shirt,Rs. 1218,Rs. 2299
+Manspire,Casual Shirt,Rs. 372,Rs. 1599
+Jackbella,Casual Shirt,Rs. 497,Rs. 1499
+Urbano Fashion,Men Solid Casual Shirt,Rs. 719,Rs. 1599
+CAVIO,Casual Shirt With T-shirt,Rs. 995,Rs. 1490
+HELLCAT,Boys Casual Shirt,,
+Banana Club,Band Collar Slim Fit Shirt,Rs. 948,Rs. 1499
+Powerlook,Casual Shirt,Rs. 1007,Rs. 2799
+Pantaloons Junior,Pure Cotton Shirt with T-shirt,Rs. 844,Rs. 1299
+Nautica,Slim Cotton Linen Shirt,Rs. 863,Rs. 2699
+BEARSOUL,Casual Shirt,Rs. 495,Rs. 1665
+H&M,Cotton Shirt,,
+Roadster,Pure Cotton Casual Shirt,Rs. 432,Rs. 1299
+HIGHLANDER,Slim Fit Opaque Casual Shirt,Rs. 367,Rs. 1599
+H&M,Cotton Shirt,,
+VASTRADO,Slim Fit Casual Shirt,Rs. 752,Rs. 2149
+Sztori,Plus Size Casual Shirt,Rs. 455,Rs. 1899
+DIVISIVE,Slim Fit Printed Casual Shirt,Rs. 495,Rs. 1499
+Nautica,Cotton Linen Casual Shirt,Rs. 1025,Rs. 2699
+Manspire,Casual Shirt,Rs. 371,Rs. 1599
+Manspire,Casual Shirt,Rs. 375,Rs. 1599
+Nautica,Pure Cotton Slim Casual Shirt,Rs. 743,Rs. 2399
+HIGHLANDER,Regular Fit Checked Shirt,Rs. 503,Rs. 1799
+MAMERU,Casual Shirt,Rs. 491,Rs. 1999
+Powerlook,Casual Shirt,Rs. 1099,Rs. 2199
+Manspire,Casual Shirt,Rs. 372,Rs. 1599
+TIOR,Casual Shirt,Rs. 399,Rs. 1999
+VASTRADO,Boxy Casual Shirt,Rs. 1124,Rs. 2249
+Chemistry,Comfort Formal Shirt,Rs. 503,Rs. 1799
+Manspire,Men Satin Shirts,Rs. 372,Rs. 1599
+Raymond,Slim Fit Formal Shirt,Rs. 944,Rs. 2099
+THE SHIRT CODE,Casual Shirt,Rs. 456,Rs. 2099
+Espanshe,Casual Shirt,,
+ColorPlus,Opaque Casual Shirt,Rs. 999,Rs. 2499
+Manspire,Casual Shirt,Rs. 374,Rs. 1599
+Manspire,Men Cotton Shirts,Rs. 373,Rs. 1599
+Urbano Fashion,Men Casual Solid Shirt,Rs. 879,Rs. 2199
+KINGDOM OF WHITE,Spread Collar Formal Shirt,Rs. 1347,Rs. 1499
+AD By Arvind,Slim Fit Opaque Casual Shirt,Rs. 1379,Rs. 2299
+H&M,Cotton Shirt,,
+H&M,Cotton Shirt,,
+TATTVA,Men Solid Casual Shirt,Rs. 799,Rs. 1999
+Manspire,Casual Shirt,Rs. 371,Rs. 1599
+Manspire,Formal Shirt,Rs. 372,Rs. 1599
+Powerlook,Textured Long Sleeves Shirt,Rs. 989,Rs. 2199
+AAHWAN,Casual Shirt,Rs. 594,Rs. 1999
+SZN,Textured Casual Shirt,Rs. 393,Rs. 1499
+AD By Arvind,Slim Fit Opaque Casual Shirt,Rs. 1019,Rs. 1699
+max,Casual Shirt,,
+DANFORTH,Boys Casual Shirt With T-shirt,Rs. 315,Rs. 1153
+Arrow,Pure Cotton Formal Shirt,Rs. 1218,Rs. 2299
+Manspire,Casual Shirt,Rs. 372,Rs. 1599
+Jackbella,Casual Shirt,Rs. 497,Rs. 1499
+Urbano Fashion,Men Solid Casual Shirt,Rs. 719,Rs. 1599
+CAVIO,Casual Shirt With T-shirt,Rs. 995,Rs. 1490
+HELLCAT,Boys Casual Shirt,,
+Banana Club,Band Collar Slim Fit Shirt,Rs. 948,Rs. 1499
+Powerlook,Casual Shirt,Rs. 1007,Rs. 2799
+Pantaloons Junior,Pure Cotton Shirt with T-shirt,Rs. 844,Rs. 1299
+Nautica,Slim Cotton Linen Shirt,Rs. 863,Rs. 2699
+BEARSOUL,Casual Shirt,Rs. 495,Rs. 1665
+H&M,Cotton Shirt,,
+Roadster,Pure Cotton Casual Shirt,Rs. 432,Rs. 1299
+HIGHLANDER,Slim Fit Opaque Casual Shirt,Rs. 367,Rs. 1599
+H&M,Cotton Shirt,,
+VASTRADO,Slim Fit Casual Shirt,Rs. 752,Rs. 2149
+Sztori,Plus Size Casual Shirt,Rs. 455,Rs. 1899
+DIVISIVE,Slim Fit Printed Casual Shirt,Rs. 495,Rs. 1499
+Nautica,Cotton Linen Casual Shirt,Rs. 1025,Rs. 2699
+Manspire,Casual Shirt,Rs. 371,Rs. 1599
+Manspire,Casual Shirt,Rs. 375,Rs. 1599
+Nautica,Pure Cotton Slim Casual Shirt,Rs. 743,Rs. 2399
+HIGHLANDER,Regular Fit Checked Shirt,Rs. 503,Rs. 1799
+MAMERU,Casual Shirt,Rs. 491,Rs. 1999
+Powerlook,Casual Shirt,Rs. 1099,Rs. 2199
+Manspire,Casual Shirt,Rs. 372,Rs. 1599
+TIOR,Casual Shirt,Rs. 399,Rs. 1999
+VASTRADO,Boxy Casual Shirt,Rs. 1124,Rs. 2249
+Chemistry,Comfort Formal Shirt,Rs. 503,Rs. 1799
+Manspire,Men Satin Shirts,Rs. 372,Rs. 1599
+Raymond,Slim Fit Formal Shirt,Rs. 944,Rs. 2099
+THE SHIRT CODE,Casual Shirt,Rs. 456,Rs. 2099
+Espanshe,Casual Shirt,,
+ColorPlus,Opaque Casual Shirt,Rs. 999,Rs. 2499
+Manspire,Casual Shirt,Rs. 374,Rs. 1599
+Manspire,Men Cotton Shirts,Rs. 373,Rs. 1599
+Urbano Fashion,Men Casual Solid Shirt,Rs. 879,Rs. 2199
