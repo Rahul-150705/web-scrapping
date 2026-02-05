@@ -24,6 +24,7 @@ try:
     print("Products loaded")
 except TimeoutException:
     print("Timed out")
+# to use try and except for all in one place like a function
 def scrape(parent,by,location):
     try:
         return parent.find_element(by,location).text
@@ -31,33 +32,36 @@ def scrape(parent,by,location):
         return ""
 products = driver.find_elements(By.CSS_SELECTOR, "li.product-base")
 shirt=[]
-page=0;
-while page<=3:
-    products=driver.find_elements(By.CSS_SELECTOR,"li.product-base")
+page=0
+while page<=5:
+    products = driver.find_elements(By.CSS_SELECTOR, "li.product-base")
     for p in products:
-
-            brand=scrape(p,By.CSS_SELECTOR, "h3.product-brand")
-            product_type = scrape(p,By.CSS_SELECTOR, "h4.product-product")
-            product_price=scrape(p,By.CSS_SELECTOR,"span.product-discountedPrice")
-            product_actual_price=scrape(p,By.CSS_SELECTOR,"span.product-strike")
-            shirt.append([brand,product_type,product_price,product_actual_price])
+        brand=scrape(p,By.CSS_SELECTOR, "h3.product-brand")
+        product_type = scrape(p,By.CSS_SELECTOR, "h4.product-product")
+        product_price=scrape(p,By.CSS_SELECTOR,"span.product-discountedPrice")
+        product_actual_price=scrape(p,By.CSS_SELECTOR,"span.product-strike")
+        shirt.append((brand,product_type,product_price,product_actual_price))
     try:
-        next_page=driver.find_element(By.CSS_SELECTOR,"li.pagination-next")
-        if "disabled" in next_page.get_attribute("class"): # to handle disabled last page
+        next_button=driver.find_element(By.CSS_SELECTOR, "li.pagination-next") # trying to find next button
+        if "disabled" in next_button.get_attribute("class"): # myntra adds disabled in last page class name so if foudn then should be breaked
             break
-        old_page=products[0] # save old page to check if becomes stale
+
+        first_product=products[0] # we should wait until the first page is stale so we store and use it there
         driver.execute_script(
-            "arguments[0].scrollIntoView({block:'center'});",next_page)
-        driver.execute_script("arguments[0].click();", next_page)
-        WebDriverWait(driver, 10).until(
-            EC.staleness_of(old_page)
+            "arguments[0].scrollIntoView({block: 'center'});", next_button
         )
-        products=driver.find_element(By.CSS_SELECTOR,"li.product-base")
-        print("Page Loaded",page)
+        driver.execute_script("arguments[0].click();",next_button)
+        # it is used to make the previous old state staleness
+        WebDriverWait(driver, 10).until(
+            EC.staleness_of(first_product)
+        )
+        products=driver.find_elements(By.CSS_SELECTOR, "li.product-base")
+        print("Page Loaded:", page)
         page+=1
-    except (NoSuchElementException,TimeoutException):
+    except (TimeoutException,NoSuchElementException):
         break
+print("Number of Pages Loaded:",page)
 df=pd.DataFrame(shirt,columns=["brand","product_type","product_price","product_actual_price"])
-df.to_csv("shirt.csv",index=False)
+df.to_csv("hello.csv",index=False)
 print("Finished Scrapping")
-driver.quit()
+

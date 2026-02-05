@@ -45,11 +45,13 @@ for p in products:
         product_actual_price=p.find_element(By.CSS_SELECTOR,"span.product-strike").text
     except NoSuchElementException:
         product_actual_price=""
-    shirt.append([brand,product_type,product_price,product_actual_price])
-if(len(shirt)==0):
-    print("Shirt Not Found")
+    try:
+        product_img=p.find_element(By.CSS_SELECTOR,"img.img-responsive").get_attribute("src")
+    except NoSuchElementException:
+        product_img=""
+    shirt.append([brand,product_type,product_price,product_actual_price,product_img])
 
-df=pd.DataFrame(shirt,columns=["brand","product_type","product_price","product_actual_price"])
-df.to_csv("shirt.csv",index=False)
+df=pd.DataFrame(shirt,columns=["brand","product_type","product_price","product_actual_price","product_img"])
+df.to_csv("img.csv",index=False)
 print("Finished Scrapping")
 driver.quit()
