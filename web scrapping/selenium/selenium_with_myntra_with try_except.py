@@ -1,3 +1,5 @@
+import sys
+
 from packaging.tags import Tag
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options # this is used to open chrome without opening it and run it headless
@@ -42,7 +44,17 @@ def scrape_url(parent):
 products = driver.find_elements(By.CSS_SELECTOR, "li.product-base")
 shirt=[]
 page=1;
-while page<=2:
+
+def to_csv():
+    df = pd.DataFrame(shirt,
+                      columns=["brand", "product_type", "product_price", "product_actual_price", "product_page_url",
+                               "product_img_url"])
+    if os.path.exists("shirt.csv"):
+        df.to_csv("shirt.csv", mode="a", index=False, header=False)  # header avoids creating the column again
+    else:
+        df.to_csv("shirt.csv", index=False)
+        
+while page<=10:
     products=driver.find_elements(By.CSS_SELECTOR,"li.product-base")
     for p in products:
             scroll_product_into_view(p)
@@ -56,6 +68,9 @@ while page<=2:
             except NoSuchElementException:
                 product_img_url = ""
             shirt.append([brand,product_type,product_price,product_actual_price,product_page_url,product_img_url])
+            if(len(shirt)>30):
+                to_csv()
+                sys.exit()
     try:
         next_page=driver.find_element(By.CSS_SELECTOR,"li.pagination-next")
         if "disabled" in next_page.get_attribute("class"): # to handle disabled last page
@@ -67,16 +82,11 @@ while page<=2:
         WebDriverWait(driver, 10).until(
             EC.staleness_of(old_page)
         )
-        products=driver.find_elements(By.CSS_SELECTOR,"li.product-base")
         print("Page Loaded",page)
         page+=1
     except (NoSuchElementException,TimeoutException):
         break
-df=pd.DataFrame(shirt,columns=["brand","product_type","product_price","product_actual_price","product_page_url","product_img_url"])
-if os.path.exists("shirt.csv"):
-    df.to_csv("shirt.csv",mode="a",index=False,header=False) # header avoids creating the column again
-else:
-    df.to_csv("shirt.csv",index=False)
+to_csv()
 print("Finished Scrapping")
 driver.quit()
 
