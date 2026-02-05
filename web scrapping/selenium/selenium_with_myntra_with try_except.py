@@ -1,9 +1,9 @@
 from packaging.tags import Tag
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options # this is used to open chrome without opening it and runnit it headless
+from selenium.webdriver.chrome.options import Options # this is used to open chrome without opening it and run it headless
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait # waits to locate the css selector in the js
-from selenium.webdriver.support import expected_conditions as EC # used in wedriverwait
+from selenium.webdriver.support.ui import WebDriverWait # waits to locate the c ss selector in the js
+from selenium.webdriver.support import expected_conditions as EC # used in web driver wait
 from selenium.common.exceptions import TimeoutException # to handle webdriver wait no time
 from selenium.common.exceptions import NoSuchElementException # to handle Null Values
 import os
@@ -25,9 +25,10 @@ try:
     print("Products loaded")
 except TimeoutException:
     print("Timed out")
+# to load image we use sleep and execute script logic with scrollIntoView logic
 def scroll_product_into_view(product_element):
     driver.execute_script("arguments[0].scrollIntoView({block:'center'});", product_element)
-    time.sleep(0.3)
+    time.sleep(0.1)
 def scrape(parent,by,location):
     try:
         return parent.find_element(by,location).text
@@ -40,8 +41,8 @@ def scrape_url(parent):
         return ""
 products = driver.find_elements(By.CSS_SELECTOR, "li.product-base")
 shirt=[]
-page=0;
-while page<=3:
+page=1;
+while page<=2:
     products=driver.find_elements(By.CSS_SELECTOR,"li.product-base")
     for p in products:
             scroll_product_into_view(p)
@@ -52,8 +53,6 @@ while page<=3:
             product_page_url=scrape_url(p)
             try:
                 product_img_url = p.find_element(By.CSS_SELECTOR, "img.img-responsive").get_attribute("src")
-                if not product_img_url:
-                    product_img_url = p.find_element(By.CSS_SELECTOR, "picture source").get_attribute("srcset")
             except NoSuchElementException:
                 product_img_url = ""
             shirt.append([brand,product_type,product_price,product_actual_price,product_page_url,product_img_url])
@@ -61,7 +60,7 @@ while page<=3:
         next_page=driver.find_element(By.CSS_SELECTOR,"li.pagination-next")
         if "disabled" in next_page.get_attribute("class"): # to handle disabled last page
             break
-        old_page=products[0] # save old page to check if becomes stale
+        old_page=products[0] # save old page to check it becomes stale
         driver.execute_script(
             "arguments[0].scrollIntoView({block:'center'});",next_page) # scroll till next page icon
         driver.execute_script("arguments[0].click();", next_page)
@@ -74,6 +73,10 @@ while page<=3:
     except (NoSuchElementException,TimeoutException):
         break
 df=pd.DataFrame(shirt,columns=["brand","product_type","product_price","product_actual_price","product_page_url","product_img_url"])
-df.to_csv("shirt.csv",index=False)
+if os.path.exists("shirt.csv"):
+    df.to_csv("shirt.csv",mode="a",index=False,header=False) # header avoids creating the column again
+else:
+    df.to_csv("shirt.csv",index=False)
 print("Finished Scrapping")
 driver.quit()
+
