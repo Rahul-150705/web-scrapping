@@ -2,9 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options # this is used to open chrome without opening it and runnit it headless
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait # waits to locate the css selector in the js
-from selenium.webdriver.support import expected_conditions as EC # used in wedriverwait
-from selenium.common.exceptions import TimeoutException # to handle webdriver wait no time
-from selenium.common.exceptions import NoSuchElementException # to handle Null Values
+from selenium.webdriver.support import expected_conditions as EC # used in Webdriver wait
+from selenium.common.exceptions import * # to handle webdriver wait no time  # to handle Null Values
 import os
 import pandas as pd # to make the list as csv
 

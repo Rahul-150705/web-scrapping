@@ -1,6 +1,4 @@
 import sys
-
-from packaging.tags import Tag
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options # this is used to open chrome without opening it and run it headless
 from selenium.webdriver.common.by import By
@@ -53,7 +51,7 @@ def to_csv():
         df.to_csv("shirt.csv", mode="a", index=False, header=False)  # header avoids creating the column again
     else:
         df.to_csv("shirt.csv", index=False)
-        
+
 while page<=10:
     products=driver.find_elements(By.CSS_SELECTOR,"li.product-base")
     for p in products:
@@ -80,7 +78,7 @@ while page<=10:
             "arguments[0].scrollIntoView({block:'center'});",next_page) # scroll till next page icon
         driver.execute_script("arguments[0].click();", next_page)
         WebDriverWait(driver, 10).until(
-            EC.staleness_of(old_page)
+            EC.staleness_of(old_page) # stale removes the previous page web element from the dom
         )
         print("Page Loaded",page)
         page+=1
