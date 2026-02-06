@@ -8,11 +8,13 @@ import time
 import pandas as pd
 
 
-
+# webdriver setup
 def set_up_driver():
     options = Options()
     driver=webdriver.Chrome(options=options)
     return driver
+
+# webdriverwait instead of temp.sleep()
 def wait_for(driver):
     try:
         WebDriverWait(driver,10).until(
@@ -22,17 +24,19 @@ def wait_for(driver):
         return True
     except TimeoutException:
         return False
+# scrape logic to reuse everytime
 def scrape(p,by,location):
     try:
         return p.find_element(by,location).text
     except (NoSuchElementException,NoSuchAttributeException):
         return ""
+# scrape logic with attribute for img and product url
 def scrape2(p,by,location,attribute):
     try:
         return p.find_element(by,location).get_attribute(attribute) # dont add text bcz its a link
     except NoSuchElementException:
         return ""
-
+# lazy loading to load image url and upload it in list
 def ensure_lazy_images_loaded(driver, step=400, delay=0.4):
     height = driver.execute_script("return document.body.scrollHeight")
     y = 0
@@ -41,6 +45,8 @@ def ensure_lazy_images_loaded(driver, step=400, delay=0.4):
         driver.execute_script(f"window.scrollTo(0, {y});")
         time.sleep(delay)
         y += step
+
+# looping to add all scraped element to the list
 def looping(driver):
         product = driver.find_elements(By.CSS_SELECTOR, "li.product-base")
         sponsor=[]
@@ -62,6 +68,7 @@ def looping(driver):
             else:
                 organic.append(row)
         return sponsor,organic
+# to check if pagination exist or not
 def next_pagination(driver,product):
     try:
         next_page=driver.find_element(By.CSS_SELECTOR,"li.pagination-next")
@@ -77,12 +84,16 @@ def next_pagination(driver,product):
         return True
     except (NoSuchElementException,TimeoutException):
         return False
+
+#to load into csv
 def to_csv(organic,sponsored):
     df = pd.DataFrame(organic, columns=["brand", "actual_price", "ad", "discount_price", "product_url", "product_img"])
     df1 = pd.DataFrame(sponsored, columns=["brand", "actual_price", "ad", "discount_price", "product_url", "product_img"])
     df.to_csv("organic.csv", index=False)
     df1.to_csv("ad.csv", index=False)
     print("Finished Scrapping")
+
+# main function
 def main():
     driver=set_up_driver()
     driver.get("https://www.myntra.com/h-and-m?rawQuery=h%26m")
@@ -107,6 +118,7 @@ def main():
         page+=1
     to_csv(orgainc_data,sponsored_data)
     driver.quit()
+# to call main function 
 if __name__ == "__main__":
     main()
 
