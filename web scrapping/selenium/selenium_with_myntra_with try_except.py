@@ -27,7 +27,7 @@ except TimeoutException:
     print("Timed out")
 # to load image we use sleep and execute script logic with scrollIntoView logic
 def scroll_product_into_view(product_element):
-    driver.execute_script("arguments[0].scrollIntoView({block:'center'});", product_element)
+    driver.execute_script("arguments[0].scrollIntoView();", product_element)
     time.sleep(0.1)
 def scrape(parent,by,location):
     try:
@@ -48,11 +48,11 @@ def to_csv():
                       columns=["brand", "product_type", "product_price", "product_actual_price", "product_page_url",
                                "product_img_url"])
     if os.path.exists("shirt.csv"):
-        df.to_csv("shirt.csv", mode="a", index=False, header=False)  # header avoids creating the column again
+        df.to_csv("shirt1.csv", mode="a", index=False, header=False)  # header avoids creating the column again
     else:
-        df.to_csv("shirt.csv", index=False)
+        df.to_csv("shirt1.csv", index=False)
 
-while page<=10:
+while page<=5:
     products=driver.find_elements(By.CSS_SELECTOR,"li.product-base")
     for p in products:
             scroll_product_into_view(p)
@@ -66,9 +66,6 @@ while page<=10:
             except NoSuchElementException:
                 product_img_url = ""
             shirt.append([brand,product_type,product_price,product_actual_price,product_page_url,product_img_url])
-            if(len(shirt)>30):
-                to_csv()
-                sys.exit()
     try:
         next_page=driver.find_element(By.CSS_SELECTOR,"li.pagination-next")
         if "disabled" in next_page.get_attribute("class"): # to handle disabled last page

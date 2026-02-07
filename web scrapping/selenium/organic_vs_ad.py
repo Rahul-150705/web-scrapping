@@ -1,12 +1,11 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import *
+from selenium.webdriver.common.by import By
 import time
 import pandas as pd
-
 
 # webdriver setup
 def set_up_driver():
@@ -57,8 +56,8 @@ def looping(driver):
             product_url = scrape2(p, By.CSS_SELECTOR, "a", "href")
             actualStrike = scrape(p, By.CSS_SELECTOR, "span.product-strike")
             product_img = scrape2(p, By.CSS_SELECTOR, "img.img-responsive", "src")
+            Discount_price = scrape(p, By.CSS_SELECTOR, "span.product-discountedPrice")
             if actualStrike!="":
-                Discount_price = scrape(p, By.CSS_SELECTOR, "span.product-discountedPrice")
                 row=[brand,actualStrike,ad,Discount_price,product_url, product_img]
             else :
                 price = scrape(p, By.CSS_SELECTOR, ".product-price span")  # same for all
@@ -92,8 +91,8 @@ def next_pagination(driver,product):
 def to_csv(organic,sponsored):
     df = pd.DataFrame(organic, columns=["brand", "actual_price", "ad", "discount_price", "product_url", "product_img"])
     df1 = pd.DataFrame(sponsored, columns=["brand", "actual_price", "ad", "discount_price", "product_url", "product_img"])
-    df.to_csv("organic.csv", index=False)
-    df1.to_csv("ad.csv", index=False)
+    df.to_csv("Organic.csv", index=False)
+    df1.to_csv("Ad.csv", index=False)
     print("Finished Scrapping")
 
 # main function
@@ -107,7 +106,6 @@ def main():
         print("Timed out")
         driver.quit()
         return
-
     while page<=2:
         print("Scrapping:",page)
         ensure_lazy_images_loaded(driver, step=400, delay=0.4)
