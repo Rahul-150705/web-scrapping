@@ -35,12 +35,26 @@ def scrape2(p,by,location,attribute):
         return p.find_element(by,location).get_attribute(attribute) # dont add text bcz its a link
     except (NoSuchElementException,NoSuchAttributeException):
         return ""
+
+# infinite scroll
+#def ensure_lazy_images_loaded(driver, step=100, delay=0.4):
+    old_height = driver.execute_script("return document.body.scrollHeight") # calculate initial height
+    y = 0
+    while y<old_height: # loop till y is greater
+        driver.execute_script(f"window.scrollTo(0, {y});",old_height) # driver.execute_script("window.scrollTo(0,arguments[0]);",y)
+        time.sleep(delay) # then wait for some second
+        new_height=driver.execute_script("return document.body.scrollHeight")
+        if old_height == new_height:
+            break
+        y += step # then increase y
+        old_height=new_height # this will increase if it's infinite scroll page, if not it will remain same
+
 # lazy loading to load image url and upload it in list
 def ensure_lazy_images_loaded(driver, step=400, delay=0.4):
     height = driver.execute_script("return document.body.scrollHeight") # calculate initial height
     y = 0
     while y < height: # loop till y is greater
-        driver.execute_script(f"window.scrollTo(0, {y});") # scroll to will scroll till y point
+        driver.execute_script(f"window.scrollTo(0, {y});") # scroll to will scroll till page end point
         time.sleep(delay) # then wait for some second
         y += step # then increase y
         height=driver.execute_script("return document.body.scrollHeight") # this will increase if its a infinite scroll page if not it will remain same

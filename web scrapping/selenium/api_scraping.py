@@ -1,6 +1,3 @@
-import requests
-import time
-import random
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -17,8 +14,9 @@ time.sleep(5)  # let Akamai + JS settle
 cookies = driver.get_cookies()
 driver.quit()
 session_cookies = {c["name"]: c["value"] for c in cookies}
-import requests
 
+
+import requests
 session = requests.Session()
 session.cookies.update(session_cookies)
 
@@ -52,7 +50,6 @@ while page<5:
 
     res = session.get(url, headers=HEADERS, params=params)
     products = res.json().get("products", [])
-
     if not products:
         break
 
@@ -61,9 +58,6 @@ while page<5:
     page += 1
     offset += rows
 
-res = session.get(url, headers=HEADERS, params=params)
-print(res.status_code)  # ✅ 200
-data = res.json()
 df = pd.DataFrame(all_products)
 df.to_csv("myntra_shirts.csv", index=False)
 print("Total products collected:", len(all_products))
