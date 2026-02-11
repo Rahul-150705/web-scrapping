@@ -1,0 +1,6 @@
+2026-02-11 11:49:34,825 - root - INFO - Page loaded
+2026-02-11 11:49:34,826 - root - INFO - Scraping page 1
+2026-02-11 11:50:04,091 - root - INFO - Scraped page 2
+2026-02-11 11:50:04,091 - root - INFO - Scraping page 2
+2026-02-11 11:50:33,708 - root - INFO - Scraped page 3
+2026-02-11 11:50:33,718 - root - INFO - Added to CSV
