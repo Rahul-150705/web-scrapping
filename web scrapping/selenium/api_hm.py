@@ -7,10 +7,11 @@ session = requests.Session()
 
 base_url="https://www.myntra.com/"
 headers = {
-    "User-Agent": "Mozilla/5.0",
-    "Accept": "application/json",
-    "Referer": base_url,
+    "User-Agent": "Mozilla/5.0", # this is a browser identifier
+    "Accept": "application/json", # tells that i want the data in json format
+    "Referer": base_url, # this is my website i cam coming from this website
 }
+
 
 # Visit homepage First bcz it sets and create a cookie to access the data if ur not doing this u may get error
 home = session.get(base_url, headers=headers, timeout=10)
